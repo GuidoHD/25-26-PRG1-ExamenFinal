@@ -6,10 +6,10 @@ class CalculadoraGeometriaExamen {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] hist_f = new String[20];
-        double[] hist_a = new double[20];
-        double[] hist_p = new double[20];
-        int hist_idx = 0;
+        String[] historial_f = new String[20];
+        double[] historial_a = new double[20];
+        double[] historial_p = new double[20];
+        int historial_idx = 0;
 
         System.out.println("Calculadora Geometrica - Areas y Perimetros");
 
@@ -24,12 +24,12 @@ class CalculadoraGeometriaExamen {
 
             if (x == 5) {
                 System.out.println("Historial de Calculos");
-                double total_a = 0;
-                for (int i = 0; i < hist_idx; i++) {
-                    System.out.println((i+1) + ". " + hist_f[i] + " -> Area: " + hist_a[i] + ", Perimetro/Volumen: " + hist_p[i]);
-                    total_a += hist_a[i];
+                double total_area = 0;
+                for (int i = 0; i < historial_idx; i++) {
+                    System.out.println((i+1) + ". " + historial_f[i] + " -> Area: " + historial_a[i] + ", Perimetro/Volumen: " + historial_p[i]);
+                    total_area += historial_a[i];
                 }
-                System.out.println("Area total acumulada: " + total_a);
+                System.out.println("Area total acumulada: " + total_area);
                 System.out.println("Gracias por usar la calculadora.");
                 break;
             }
@@ -47,11 +47,11 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + z);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(hist_idx < 20) {
-                        hist_f[hist_idx] = "Circulo";
-                        hist_a[hist_idx] = z;
-                        hist_p[hist_idx] = p;
-                        hist_idx++;
+                    if(historial_idx < 20) {
+                        historial_f[historial_idx] = "Circulo";
+                        historial_a[historial_idx] = z;
+                        historial_p[historial_idx] = p;
+                        historial_idx++;
                     }
                 } else {
                     System.out.println("Radio invalido");
@@ -67,11 +67,11 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + a);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(hist_idx < 20) {
-                        hist_f[hist_idx] = "Rectangulo";
-                        hist_a[hist_idx] = a;
-                        hist_p[hist_idx] = p;
-                        hist_idx++;
+                    if(historial_idx < 20) {
+                        historial_f[historial_idx] = "Rectangulo";
+                        historial_a[historial_idx] = a;
+                        historial_p[historial_idx] = p;
+                        historial_idx++;
                     }
                 } else {
                     System.out.println("Dimensiones invalidas");
@@ -90,11 +90,11 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + a);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(hist_idx < 20) {
-                        hist_f[hist_idx] = "Triangulo";
-                        hist_a[hist_idx] = a;
-                        hist_p[hist_idx] = p;
-                        hist_idx++;
+                    if(historial_idx < 20) {
+                        historial_f[historial_idx] = "Triangulo";
+                        historial_a[historial_idx] = a;
+                        historial_p[historial_idx] = p;
+                        historial_idx++;
                     }
                 } else {
                     System.out.println("Lados invalidos o no forman un triangulo");
@@ -112,11 +112,11 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area Superficial: " + area_total);
                     System.out.println("Volumen: " + vol);
                     f = true;
-                    if(hist_idx < 20) {
-                        hist_f[hist_idx] = "Cilindro";
-                        hist_a[hist_idx] = area_total;
-                        hist_p[hist_idx] = vol;
-                        hist_idx++;
+                    if(historial_idx < 20) {
+                        historial_f[historial_idx] = "Cilindro";
+                        historial_a[historial_idx] = area_total;
+                        historial_p[historial_idx] = vol;
+                        historial_idx++;
                     }
                 } else {
                     System.out.println("Dimensiones invalidas");
