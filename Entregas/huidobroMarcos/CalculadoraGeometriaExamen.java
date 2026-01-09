@@ -6,7 +6,7 @@ class CalculadoraGeometriaExamen {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] historial_f = new String[20];
+        String[] historialFigura = new String[20];
         double[] historialArea = new double[20];
         double[] historialPerimetro = new double[20];
         int historialIndice = 0;
@@ -26,7 +26,7 @@ class CalculadoraGeometriaExamen {
                 System.out.println("Historial de Calculos");
                 double totalArea = 0;
                 for (int i = 0; i < historialIndice; i++) {
-                    System.out.println((i+1) + ". " + historial_f[i] + " -> Area: " + historialArea[i] + ", Perimetro/Volumen: " + historialPerimetro[i]);
+                    System.out.println((i+1) + ". " + historialFigura[i] + " -> Area: " + historialArea[i] + ", Perimetro/Volumen: " + historialPerimetro[i]);
                     totalArea += historialArea[i];
                 }
                 System.out.println("Area total acumulada: " + totalArea);
@@ -34,23 +34,21 @@ class CalculadoraGeometriaExamen {
                 break;
             }
 
-            double y = 0;
-            double z = 0;
-            boolean f = false;
+            boolean figuraPosible = false;
 
             if (botonPresionado == 1) {
                 System.out.print("Radio: ");
-                y = scanner.nextDouble();
-                if (y > 0) {
-                    z = 3.14159 * y * y;
-                    double p = 2 * 3.14159 * y;
-                    System.out.println("Area: " + z);
-                    System.out.println("Perimetro: " + p);
-                    f = true;
+                double radioCirculo = scanner.nextDouble();
+                if (radioCirculo > 0) {
+                    double areaCirculo = 3.14159 * radioCirculo * radioCirculo;
+                    double perimetroCirculo = 2 * 3.14159 * radioCirculo;
+                    System.out.println("Area: " + areaCirculo);
+                    System.out.println("Perimetro: " + perimetroCirculo);
+                    figuraPosible = true;
                     if(historialIndice < 20) {
-                        historial_f[historialIndice] = "Circulo";
-                        historialArea[historialIndice] = z;
-                        historialPerimetro[historialIndice] = p;
+                        historialFigura[historialIndice] = "Circulo";
+                        historialArea[historialIndice] = areaCirculo;
+                        historialPerimetro[historialIndice] = perimetroCirculo;
                         historialIndice++;
                     }
                 } else {
@@ -58,19 +56,19 @@ class CalculadoraGeometriaExamen {
                 }
             } else if (botonPresionado == 2) {
                 System.out.print("Base: ");
-                y = scanner.nextDouble();
+                double baseRectangulo = scanner.nextDouble();
                 System.out.print("Altura: ");
-                z = scanner.nextDouble();
-                if (y > 0 && z > 0) {
-                    double a = y * z;
-                    double p = 2 * (y + z);
-                    System.out.println("Area: " + a);
-                    System.out.println("Perimetro: " + p);
-                    f = true;
+                double alturaRectangulo = scanner.nextDouble();
+                if (baseRectangulo > 0 && alturaRectangulo > 0) {
+                    double areaRectangulo = baseRectangulo * alturaRectangulo;
+                    double perimetroRectangulo = 2 * (baseRectangulo + alturaRectangulo);
+                    System.out.println("Area: " + areaRectangulo);
+                    System.out.println("Perimetro: " + perimetroRectangulo);
+                    figuraPosible = true;
                     if(historialIndice < 20) {
-                        historial_f[historialIndice] = "Rectangulo";
-                        historialArea[historialIndice] = a;
-                        historialPerimetro[historialIndice] = p;
+                        historialFigura[historialIndice] = "Rectangulo";
+                        historialArea[historialIndice] = areaRectangulo;
+                        historialPerimetro[historialIndice] = perimetroRectangulo;
                         historialIndice++;
                     }
                 } else {
@@ -78,22 +76,22 @@ class CalculadoraGeometriaExamen {
                 }
             } else if (botonPresionado == 3) {
                 System.out.print("Lado 1: ");
-                y = scanner.nextDouble();
+                double lado1 = scanner.nextDouble();
                 System.out.print("Lado 2: ");
-                z = scanner.nextDouble();
+                double lado2 = scanner.nextDouble();
                 System.out.print("Lado 3: ");
-                double w = scanner.nextDouble();
-                if (y > 0 && z > 0 && w > 0 && (y + z > w && y + w > z && z + w > y)) {
-                    double s = (y + z + w) / 2;
-                    double a = Math.sqrt(s * (s - y) * (s - z) * (s - w));
-                    double p = y + z + w;
-                    System.out.println("Area: " + a);
-                    System.out.println("Perimetro: " + p);
-                    f = true;
+                double lado3 = scanner.nextDouble();
+                if (lado1 > 0 && lado2 > 0 && lado3 > 0 && (lado1 + lado2 > lado3 && lado1 + lado3 > lado2 && lado2 + lado3 > lado1)) {
+                    double semiperimetroTriangulo = (lado1 + lado2 + lado3) / 2;
+                    double areaTriangulo = Math.sqrt(semiperimetroTriangulo * (semiperimetroTriangulo - lado1) * (semiperimetroTriangulo - lado2) * (semiperimetroTriangulo - lado3));
+                    double perimetroTriangulo = lado1 + lado2 + lado3;
+                    System.out.println("Area: " + areaTriangulo);
+                    System.out.println("Perimetro: " + perimetroTriangulo);
+                    figuraPosible = true;
                     if(historialIndice < 20) {
-                        historial_f[historialIndice] = "Triangulo";
-                        historialArea[historialIndice] = a;
-                        historialPerimetro[historialIndice] = p;
+                        historialFigura[historialIndice] = "Triangulo";
+                        historialArea[historialIndice] = areaTriangulo;
+                        historialPerimetro[historialIndice] = perimetroTriangulo;
                         historialIndice++;
                     }
                 } else {
@@ -101,21 +99,21 @@ class CalculadoraGeometriaExamen {
                 }
             } else if (botonPresionado == 4) {
                 System.out.print("Radio: ");
-                y = scanner.nextDouble();
+                double radioCilindro = scanner.nextDouble();
                 System.out.print("Altura: ");
-                z = scanner.nextDouble();
-                if (y > 0 && z > 0) {
-                    double areaBase = 3.14159 * y * y;
-                    double areaLateral = 2 * 3.14159 * y * z;
-                    double areaTotal = 2 * areaBase + areaLateral;
-                    double volumen = areaBase * z;
-                    System.out.println("Area Superficial: " + areaTotal);
-                    System.out.println("Volumen: " + volumen);
-                    f = true;
+                double alturaCilindro = scanner.nextDouble();
+                if (radioCilindro > 0 && alturaCilindro > 0) {
+                    double areaBaseCilindro = 3.14159 * radioCilindro * radioCilindro;
+                    double areaLateralCilindro = 2 * 3.14159 * radioCilindro * alturaCilindro;
+                    double areaTotalCilindro = 2 * areaBaseCilindro + areaLateralCilindro;
+                    double volumenCilindro = areaBaseCilindro * alturaCilindro;
+                    System.out.println("Area Superficial: " + areaTotalCilindro);
+                    System.out.println("Volumen: " + volumenCilindro);
+                    figuraPosible = true;
                     if(historialIndice < 20) {
-                        historial_f[historialIndice] = "Cilindro";
-                        historialArea[historialIndice] = areaTotal;
-                        historialPerimetro[historialIndice] = volumen;
+                        historialFigura[historialIndice] = "Cilindro";
+                        historialArea[historialIndice] = areaTotalCilindro;
+                        historialPerimetro[historialIndice] = volumenCilindro;
                         historialIndice++;
                     }
                 } else {
@@ -125,7 +123,7 @@ class CalculadoraGeometriaExamen {
                 System.out.println("Opcion no valida");
             }
 
-            if (f) {
+            if (figuraPosible) {
                 System.out.println("Calculo completado.");
             }
         }
