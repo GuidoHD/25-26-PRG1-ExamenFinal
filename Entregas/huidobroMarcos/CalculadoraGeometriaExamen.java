@@ -7,9 +7,9 @@ class CalculadoraGeometriaExamen {
         Scanner scanner = new Scanner(System.in);
 
         String[] historial_f = new String[20];
-        double[] historial_a = new double[20];
-        double[] historial_p = new double[20];
-        int historial_idx = 0;
+        double[] historialArea = new double[20];
+        double[] historialPerimetro = new double[20];
+        int historialIndice = 0;
 
         System.out.println("Calculadora Geometrica - Areas y Perimetros");
 
@@ -20,16 +20,16 @@ class CalculadoraGeometriaExamen {
             System.out.println("[4] Cilindro");
             System.out.println("[5] Ver historial y Salir");
             System.out.print("Seleccione figura: ");
-            int x = scanner.nextInt();
+            int botonPresionado = scanner.nextInt();
 
-            if (x == 5) {
+            if (botonPresionado == 5) {
                 System.out.println("Historial de Calculos");
-                double total_area = 0;
-                for (int i = 0; i < historial_idx; i++) {
-                    System.out.println((i+1) + ". " + historial_f[i] + " -> Area: " + historial_a[i] + ", Perimetro/Volumen: " + historial_p[i]);
-                    total_area += historial_a[i];
+                double totalArea = 0;
+                for (int i = 0; i < historialIndice; i++) {
+                    System.out.println((i+1) + ". " + historial_f[i] + " -> Area: " + historialArea[i] + ", Perimetro/Volumen: " + historialPerimetro[i]);
+                    totalArea += historialArea[i];
                 }
-                System.out.println("Area total acumulada: " + total_area);
+                System.out.println("Area total acumulada: " + totalArea);
                 System.out.println("Gracias por usar la calculadora.");
                 break;
             }
@@ -38,7 +38,7 @@ class CalculadoraGeometriaExamen {
             double z = 0;
             boolean f = false;
 
-            if (x == 1) {
+            if (botonPresionado == 1) {
                 System.out.print("Radio: ");
                 y = scanner.nextDouble();
                 if (y > 0) {
@@ -47,16 +47,16 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + z);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(historial_idx < 20) {
-                        historial_f[historial_idx] = "Circulo";
-                        historial_a[historial_idx] = z;
-                        historial_p[historial_idx] = p;
-                        historial_idx++;
+                    if(historialIndice < 20) {
+                        historial_f[historialIndice] = "Circulo";
+                        historialArea[historialIndice] = z;
+                        historialPerimetro[historialIndice] = p;
+                        historialIndice++;
                     }
                 } else {
                     System.out.println("Radio invalido");
                 }
-            } else if (x == 2) {
+            } else if (botonPresionado == 2) {
                 System.out.print("Base: ");
                 y = scanner.nextDouble();
                 System.out.print("Altura: ");
@@ -67,16 +67,16 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + a);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(historial_idx < 20) {
-                        historial_f[historial_idx] = "Rectangulo";
-                        historial_a[historial_idx] = a;
-                        historial_p[historial_idx] = p;
-                        historial_idx++;
+                    if(historialIndice < 20) {
+                        historial_f[historialIndice] = "Rectangulo";
+                        historialArea[historialIndice] = a;
+                        historialPerimetro[historialIndice] = p;
+                        historialIndice++;
                     }
                 } else {
                     System.out.println("Dimensiones invalidas");
                 }
-            } else if (x == 3) {
+            } else if (botonPresionado == 3) {
                 System.out.print("Lado 1: ");
                 y = scanner.nextDouble();
                 System.out.print("Lado 2: ");
@@ -90,33 +90,33 @@ class CalculadoraGeometriaExamen {
                     System.out.println("Area: " + a);
                     System.out.println("Perimetro: " + p);
                     f = true;
-                    if(historial_idx < 20) {
-                        historial_f[historial_idx] = "Triangulo";
-                        historial_a[historial_idx] = a;
-                        historial_p[historial_idx] = p;
-                        historial_idx++;
+                    if(historialIndice < 20) {
+                        historial_f[historialIndice] = "Triangulo";
+                        historialArea[historialIndice] = a;
+                        historialPerimetro[historialIndice] = p;
+                        historialIndice++;
                     }
                 } else {
                     System.out.println("Lados invalidos o no forman un triangulo");
                 }
-            } else if (x == 4) {
+            } else if (botonPresionado == 4) {
                 System.out.print("Radio: ");
                 y = scanner.nextDouble();
                 System.out.print("Altura: ");
                 z = scanner.nextDouble();
                 if (y > 0 && z > 0) {
-                    double area_base = 3.14159 * y * y;
-                    double area_lateral = 2 * 3.14159 * y * z;
-                    double area_total = 2 * area_base + area_lateral;
-                    double vol = area_base * z;
-                    System.out.println("Area Superficial: " + area_total);
-                    System.out.println("Volumen: " + vol);
+                    double areaBase = 3.14159 * y * y;
+                    double areaLateral = 2 * 3.14159 * y * z;
+                    double areaTotal = 2 * areaBase + areaLateral;
+                    double volumen = areaBase * z;
+                    System.out.println("Area Superficial: " + areaTotal);
+                    System.out.println("Volumen: " + volumen);
                     f = true;
-                    if(historial_idx < 20) {
-                        historial_f[historial_idx] = "Cilindro";
-                        historial_a[historial_idx] = area_total;
-                        historial_p[historial_idx] = vol;
-                        historial_idx++;
+                    if(historialIndice < 20) {
+                        historial_f[historialIndice] = "Cilindro";
+                        historialArea[historialIndice] = areaTotal;
+                        historialPerimetro[historialIndice] = volumen;
+                        historialIndice++;
                     }
                 } else {
                     System.out.println("Dimensiones invalidas");
